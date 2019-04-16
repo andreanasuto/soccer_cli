@@ -1,5 +1,2 @@
-require "soccer_cli/version"
-
-module SoccerCli
-  # Your code goes here...
-end
+require_relative "./soccer_cli/version"
+require_relative "./soccer_cli/cli"
