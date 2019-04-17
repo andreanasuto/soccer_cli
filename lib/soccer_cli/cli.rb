@@ -1,5 +1,5 @@
 class CommandLineInterface
-  def call
+  def run
     puts "Choose your competition"
     list_competitions
     list_standings
