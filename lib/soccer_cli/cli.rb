@@ -12,8 +12,8 @@ class CommandLineInterface
   end
 
   def make_teams
-    hash_profile = Scraper.scraper_table(@@url)
-    Team.new(hash_profile)
+    teams = Scraper.scraper_table(@@url)
+    Team.new_from_collection(teams)
     i = 0
     Team.all.each { |team|
       i += 1

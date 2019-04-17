@@ -9,6 +9,11 @@ class Team
     @@all << self
   end
 
+  def self.new_from_array(team_profile_array)
+    team_array.each { |team_hash|
+      self.new(team_hash)
+    }
+  end
   def add_attributes(hash_attributes)
     hash_attributes.each { |k,v| instance_variable_set("@#{k}", v)}
   end
