@@ -1,5 +1,5 @@
 class Team
-  attr_accessor :points, :name, :average_age, :value
+  attr_accessor :points, :name, :average_age, :value, :stadium
   @@all = []
   # [{:points => "12", :name => "Juventus",
   # :age => "28,2", :value => "$800mn"}]

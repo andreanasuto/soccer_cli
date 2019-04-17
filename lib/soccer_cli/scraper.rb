@@ -8,8 +8,7 @@ class Scraper
     output = []
     doc = Nokogiri::HTML(open(url))
     table = doc.css('.responsive-table').last
-    binding.pry
-    table.search('tr').each do |tr|
+    table.search('tbody > tr').each do |tr|
       profile = {
         :name => tr.css('td.no-border-links.hauptlink a').text,
         :points => tr.css('td.zentriert')[7].text,
