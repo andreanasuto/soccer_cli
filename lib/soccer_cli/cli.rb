@@ -9,6 +9,7 @@ class CommandLineInterface
 
   def league_table
     hash_profile = Scraper.scraper_table(url)
+    Team.new(hash_profile)
     i = 0
     Team.all.each { |team|
       i += 1

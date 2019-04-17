@@ -17,7 +17,8 @@ class Team
     @@all
   end
 
-  def find_by_ranking()
-
+  def self.find_by_ranking(rank)
+    team_sorted = self.all.sort_by { |team| team.points}
+    team_sorted.select { |team| teams_sorted.index(team) == rank-1}
   end
 end
