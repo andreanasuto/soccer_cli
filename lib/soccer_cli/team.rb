@@ -5,7 +5,7 @@ class Team
   # :age => "28,2", :value => "$800mn"}]
 
   def initialize(hash_teams)
-    hash_teams.each { |k,v| instance_variable_set("@#{k}", v) }
+    hash_teams.each { |k,v| instance_variable_set("@#{k}", v) unless v.nil? }
     @@all << self
   end
 
@@ -15,7 +15,7 @@ class Team
     }
   end
   def add_attributes(hash_attributes)
-    hash_attributes.each { |k,v| instance_variable_set("@#{k}", v)}
+    hash_attributes.each { |k,v| instance_variable_set("@#{k}", v) unless v.nil?} 
   end
 
   def self.all
