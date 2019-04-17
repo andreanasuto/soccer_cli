@@ -1,5 +1,5 @@
 class Team
-  attr_accessor :points, :name, :average_age, :value, :stadium
+  attr_accessor :points, :name, :average_age, :value, :stadium, :url
   @@all = []
   # [{:points => "12", :name => "Juventus",
   # :age => "28,2", :value => "$800mn"}]
@@ -14,8 +14,9 @@ class Team
       self.new(team_hash)
     }
   end
+
   def add_attributes(hash_attributes)
-    hash_attributes.each { |k,v| instance_variable_set("@#{k}", v) unless v.nil?} 
+    hash_attributes.each { |k,v| instance_variable_set("@#{k}", v) unless v.nil?}
   end
 
   def self.all

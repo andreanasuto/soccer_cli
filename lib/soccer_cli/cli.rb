@@ -24,6 +24,7 @@ class CommandLineInterface
 
   def add_attributes_to_teams
     base = "https://www.transfermarkt.us"
+    binding.pry
     Team.all.each do |team|
       attributes = Scraper.scraper_team_profile(base + team.url)
       team.add_attributes(attributes)
