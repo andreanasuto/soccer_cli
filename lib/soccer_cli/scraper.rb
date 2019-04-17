@@ -13,7 +13,7 @@ class Scraper
         :name => tr.css('td.no-border-links.hauptlink a').text,
         :points => tr.css('td.zentriert')[7].text,
         #add https://www.transfermarkt.us to get the working link
-        :url => tr.css('td.no-border-links.hauptlink a').attr('href')
+        :url => tr.css('td.no-border-links.hauptlink a').attr('href').value
       }
       output << profile
     end
