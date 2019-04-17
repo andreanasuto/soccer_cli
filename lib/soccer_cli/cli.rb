@@ -13,6 +13,7 @@ class CommandLineInterface
 
   def make_teams
     teams = Scraper.scraper_table(@@url)
+    binding.pry
     Team.new_from_collection(teams)
     i = 0
     Team.all.each { |team|
@@ -24,7 +25,6 @@ class CommandLineInterface
   def add_attributes_to_teams
     base = "https://www.transfermarkt.us"
     Team.all.each do |team|
-      binding.pry
       attributes = Scraper.scraper_team_profile(base + team.url)
       team.add_attributes(attributes)
     end

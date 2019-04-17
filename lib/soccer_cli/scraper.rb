@@ -17,6 +17,7 @@ class Scraper
       }
       output << profile
     end
+    output
   end
 
   def self.scraper_team_profile(url)
