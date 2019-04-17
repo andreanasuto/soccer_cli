@@ -34,11 +34,16 @@ class CommandLineInterface
     input = ""
     puts "Select team by typing its table ranking"
     input = gets.strip
-    team = Team.find_by_ranking(input.to_i)
-    puts "Here some details:"
-    puts "#{team.name} is currently value $#{team.mkt_value}mn"
-    puts "#{team.name} players average age is #{team.average_age}"
-    puts "They play at #{team.stadium}"
+    if input.to_i > 0 && input.to_i <= Team.all.size
+      team = Team.find_by_ranking(input.to_i)
+      puts "Here some details:"
+      puts "#{team.name} is currently value $#{team.mkt_value}mn"
+      puts "#{team.name} players average age is #{team.average_age}"
+      puts "They play at #{team.stadium}"
+    else
+      puts "Please type a valid rank to select your team"
+      select_team
+    end
   end
 
 end
