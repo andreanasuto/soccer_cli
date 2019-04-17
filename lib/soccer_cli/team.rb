@@ -1,5 +1,5 @@
 class Team
-  attr_accessor :points, :name, :average_age, :value, :stadium, :url
+  attr_accessor :points, :name, :average_age, :mkt_value, :stadium, :url
   @@all = []
   # [{:points => "12", :name => "Juventus",
   # :age => "28,2", :value => "$800mn"}]
@@ -24,8 +24,7 @@ class Team
   end
 
   def self.find_by_ranking(rank)
-    team_sorted = self.all.sort_by { |team| team.points}
-    team_sorted.select { |team| teams_sorted.index(team) == rank-1}
+    self.all.find { |team| self.all.index(team) == rank-1}
   end
 
 end

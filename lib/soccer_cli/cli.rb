@@ -13,18 +13,17 @@ class CommandLineInterface
 
   def make_teams
     teams = Scraper.scraper_table(@@url)
-    binding.pry
     Team.new_from_collection(teams)
     i = 0
     Team.all.each { |team|
       i += 1
       puts "#{i}. #{team.name}"
     }
+    puts "Loading: just wait, magic needs time!"
   end
 
   def add_attributes_to_teams
     base = "https://www.transfermarkt.us"
-    binding.pry
     Team.all.each do |team|
       attributes = Scraper.scraper_team_profile(base + team.url)
       team.add_attributes(attributes)
@@ -34,10 +33,10 @@ class CommandLineInterface
   def select_team
     input = ""
     puts "Select team by typing its table ranking"
-    input = gets.strips
-    team = Team.find_by_ranking(input)
+    input = gets.strip
+    team = Team.find_by_ranking(input.to_i)
     puts "Here some details:"
-    puts "#{team.name} is currently value $#{team.value}mn"
+    puts "#{team.name} is currently value $#{team.mkt_value}mn"
     puts "#{team.name} players average age is #{team.average_age}"
     puts "They play at #{team.stadium}"
   end
