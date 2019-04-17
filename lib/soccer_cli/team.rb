@@ -10,7 +10,7 @@ class Team
   end
 
   def self.new_from_collection(team_profile_array)
-    team_array.each { |team_hash|
+    team_profile_array.each { |team_hash|
       self.new(team_hash)
     }
   end
