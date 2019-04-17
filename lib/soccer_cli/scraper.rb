@@ -4,19 +4,20 @@ require 'open-uri'
 
 class Scraper
   # url = https://www.transfermarkt.us/serie-a/tabelle/wettbewerb/IT1/saison_id/2018
-  def self.scraper_team_table(url)
+  def self.scraper_table(url)
     output = []
     doc = Nokogiri::HTML(open(url))
-    table = doc.css('.responsive table').last
-
+    table = doc.css('.responsive-table').last
+    binding.pry
     table.search('tr').each do |tr|
       profile = {
-        :name => tr.css('td.no-border-links.hauptlink a').text
-        :points => tr.css('td.zentriert')[7].text
+        :name => tr.css('td.no-border-links.hauptlink a').text,
+        :points => tr.css('td.zentriert')[7].text,
         #add https://www.transfermarkt.us to get the working link
         :url => tr.css('td.no-border-links.hauptlink a').attr('href')
       }
       output << profile
+    end
   end
 
   def self.scraper_team_profile(url)
@@ -26,8 +27,8 @@ class Scraper
     second = doc.css('.dataBottom > .dataDaten').last
 
     profile = {
-      :average_age => first.search('p')[1].css('span.dataValue').text.strip
-      :stadium => second.search('p')[1].css('span.dataValue a').text.strip
+      :average_age => first.search('p')[1].css('span.dataValue').text.strip,
+      :stadium => second.search('p')[1].css('span.dataValue a').text.strip,
       :mkt_value => doc.css('.dataMarktwert a').children[1].text
     }
   end

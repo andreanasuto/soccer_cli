@@ -1,8 +1,8 @@
-require_relative './soccer_cli/team'
-require_relative './soccer_cli/scraper'
+require_relative '../soccer_cli/team'
+require_relative '../soccer_cli/scraper'
 
 class CommandLineInterface
-  url = "https://www.transfermarkt.us/serie-a/tabelle/wettbewerb/IT1/saison_id/2018"
+  @@url = "https://www.transfermarkt.us/serie-a/tabelle/wettbewerb/IT1/saison_id/2018"
 
   def run
     puts "Welcome to Serie A CLI"
@@ -11,8 +11,8 @@ class CommandLineInterface
     select_team
   end
 
-  def make_teams(url)
-    hash_profile = Scraper.scraper_table(url)
+  def make_teams
+    hash_profile = Scraper.scraper_table(@@url)
     Team.new(hash_profile)
     i = 0
     Team.all.each { |team|
