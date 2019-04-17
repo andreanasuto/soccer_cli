@@ -1,12 +1,19 @@
+require_relative './soccer_cli/team'
+require_relative './soccer_cli/scraper'
+
 class CommandLineInterface
   def run
-    puts "Choose your competition"
-    list_competitions
-    list_standings
+    puts "Welcome to Serie A CLI"
+    league_table
   end
 
-  def list_competitions
-    puts "1. Liga / 2.Premier League..."
+  def league_table
+    hash_profile = Scraper.scraper_table(url)
+    i = 0
+    Team.all.each { |team|
+      i += 1
+
+    }
   end
 
   def list_standings

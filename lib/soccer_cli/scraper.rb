@@ -23,9 +23,9 @@ class Scraper
     #url = https://www.transfermarkt.us/inter-mailand/spielplan/verein/46/saison_id/2018
     doc = Nokogiri::HTML(open(url))
     first = doc.css('.dataBottom > .dataDaten').first
-    second = @doc.css('.dataBottom > .dataDaten').last
+    second = doc.css('.dataBottom > .dataDaten').last
 
-    profile_2 = {
+    profile = {
       :average_age => first.search('p')[1].css('span.dataValue').text.strip
       :stadium => second.search('p')[1].css('span.dataValue a').text.strip
       :mkt_value => doc.css('.dataMarktwert a').children[1].text
