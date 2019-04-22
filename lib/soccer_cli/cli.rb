@@ -37,7 +37,7 @@ class CommandLineInterface
     if input.to_i > 0 && input.to_i <= Team.all.size
       team = Team.find_by_ranking(input.to_i)
       puts "Here some details:"
-      puts "#{team.name} is currently value $#{team.mkt_value}mn"
+      puts "#{team.name} is currently valued $#{team.mkt_value}mn"
       puts "#{team.name} players average age is #{team.average_age}"
       puts "They play at #{team.stadium}"
     else
