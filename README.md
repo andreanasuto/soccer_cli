@@ -61,12 +61,12 @@ They play at Stadio San Siro - Giuseppe Meazza
 ## Built With
 
 * Ruby
-* Nokogiri Gem to scrape data
-
+* Nokogiri Gem to scrape
 ## Authors
 
-* **Andrea Nasuto** - [Github](https://github.com/andreanasuto)
+## Built With
 
+* **Andrea Nasuto** - [Github](https://github.com/andreanasuto)
 
 ## License
 
