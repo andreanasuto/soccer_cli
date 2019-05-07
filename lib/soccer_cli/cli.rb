@@ -7,12 +7,12 @@ class CommandLineInterface
   def run
     puts "Welcome to Serie A CLI"
     Team.make_teams
-    Team.add_attributes_to_teams
     display
   end
 
   def display
     print_teams
+    Team.add_attributes_to_teams
     select_team
   end
 
