@@ -4,8 +4,11 @@ class Team
   # [{:points => "12", :name => "Juventus",
   # :age => "28,2", :value => "$800mn"}]
 
+  @@url = "https://www.transfermarkt.us/serie-a/tabelle/wettbewerb/IT1/saison_id/2018"
+
   def initialize(hash_teams)
     hash_teams.each { |k,v| instance_variable_set("@#{k}", v) unless v.nil? }
+    # hash_teams.each { |k,v| self.send("#{k}=", v) unless v.nil? }
     @@all << self
   end
 
@@ -25,6 +28,20 @@ class Team
 
   def self.find_by_ranking(rank)
     self.all.find { |team| self.all.index(team) == rank-1}
+  end
+
+  def self.make_teams
+    puts "Loading: just wait, magic needs time!"
+    teams = Scraper.scraper_table(@@url)
+    Team.new_from_collection(teams)
+  end
+
+  def self.add_attributes_to_teams
+    base = "https://www.transfermarkt.us"
+    Team.all.each do |team|
+      attributes = Scraper.scraper_team_profile(base + team.url)
+      team.add_attributes(attributes)
+    end
   end
 
 end
