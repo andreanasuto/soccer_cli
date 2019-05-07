@@ -2,44 +2,53 @@ require_relative '../soccer_cli/team'
 require_relative '../soccer_cli/scraper'
 
 class CommandLineInterface
-  @@url = "https://www.transfermarkt.us/serie-a/tabelle/wettbewerb/IT1/saison_id/2018"
-
+  # adjust the CLI so that the program doesn't exit after looking at one team
+  # instead, give the user the option to see them menu (list) again, or type 'exit' to require_relative
   def run
     puts "Welcome to Serie A CLI"
-    make_teams
-    add_attributes_to_teams
+    Team.make_teams
+    Team.add_attributes_to_teams
+    display
+  end
+
+  def display
+    print_teams
     select_team
   end
 
-  def make_teams
-    teams = Scraper.scraper_table(@@url)
-    Team.new_from_collection(teams)
+  def show_more
+    puts "Do you want to check other teams?(Yes/No)"
+    input = gets.strip.downcase
+    if input == "yes"
+      display
+    elsif input == "no" || input == "exit"
+      puts "Thanks and see you soon!"
+    else
+      puts "I didn't get it. Let me ask you again"
+      show_more
+    end
+  end
+
+  def print_teams
     i = 0
     Team.all.each { |team|
       i += 1
       puts "#{i}. #{team.name}"
     }
-    puts "Loading: just wait, magic needs time!"
-  end
-
-  def add_attributes_to_teams
-    base = "https://www.transfermarkt.us"
-    Team.all.each do |team|
-      attributes = Scraper.scraper_team_profile(base + team.url)
-      team.add_attributes(attributes)
-    end
+    puts "Select team by typing its table ranking or type 'exit' to quit the app."
   end
 
   def select_team
-    input = ""
-    puts "Select team by typing its table ranking"
-    input = gets.strip
+    input = gets.strip.downcase
     if input.to_i > 0 && input.to_i <= Team.all.size
       team = Team.find_by_ranking(input.to_i)
       puts "Here some details:"
       puts "#{team.name} is currently valued $#{team.mkt_value}mn"
       puts "#{team.name} players average age is #{team.average_age}"
       puts "They play at #{team.stadium}"
+      show_more
+    elsif input == "exit"
+      puts "Goodbye"
     else
       puts "Please type a valid rank to select your team"
       select_team
