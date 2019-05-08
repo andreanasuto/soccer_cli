@@ -1,3 +1,4 @@
+module SoccerCli
 class CommandLineInterface
 
   def run
@@ -54,4 +55,5 @@ class CommandLineInterface
     end
   end
 
+end
 end
