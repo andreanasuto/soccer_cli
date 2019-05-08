@@ -36,12 +36,11 @@ class Team
     Team.new_from_collection(teams)
   end
 
-  def self.add_attributes_to_teams
+  def add_attributes_to_team(input)
     base = "https://www.transfermarkt.us"
-    Team.all.each do |team|
-      attributes = Scraper.scraper_team_profile(base + team.url)
-      team.add_attributes(attributes)
-    end
+    team = Team.find_by_ranking(input.to_i)
+    attributes = Scraper.scraper_team_profile(base + team.url)
+    team.add_attributes(attributes)
   end
 
 end
