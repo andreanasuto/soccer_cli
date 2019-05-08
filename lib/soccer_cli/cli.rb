@@ -1,9 +1,5 @@
-require_relative '../soccer_cli/team'
-require_relative '../soccer_cli/scraper'
-
 class CommandLineInterface
-  # adjust the CLI so that the program doesn't exit after looking at one team
-  # instead, give the user the option to see them menu (list) again, or type 'exit' to require_relative
+
   def run
     puts "Welcome to Serie A CLI"
     Team.make_teams
@@ -12,7 +8,6 @@ class CommandLineInterface
 
   def display
     print_teams
-    Team.add_attributes_to_teams
     select_team
   end
 
@@ -42,7 +37,11 @@ class CommandLineInterface
     input = gets.strip.downcase
     if input.to_i > 0 && input.to_i <= Team.all.size
       team = Team.find_by_ranking(input.to_i)
+      unless team.mkt_value
+        team.add_attributes_to_team(input.to_i)
+      end
       puts "Here some details:"
+      puts "#{team.name} has #{team.points}"
       puts "#{team.name} is currently valued $#{team.mkt_value}mn"
       puts "#{team.name} players average age is #{team.average_age}"
       puts "They play at #{team.stadium}"
