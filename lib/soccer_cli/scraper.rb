@@ -1,7 +1,3 @@
-require 'pry'
-require 'nokogiri'
-require 'open-uri'
-
 class Scraper
   # url = https://www.transfermarkt.us/serie-a/tabelle/wettbewerb/IT1/saison_id/2018
   def self.scraper_table(url)
