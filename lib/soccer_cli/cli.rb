@@ -42,7 +42,7 @@ module SoccerCli
           team.add_attributes_to_team(input.to_i)
         end
         puts "Here some details:"
-        puts "#{team.name} has #{team.points}"
+        puts "#{team.name} has #{team.points} points"
         puts "#{team.name} is currently valued $#{team.mkt_value}mn"
         puts "#{team.name} players average age is #{team.average_age}"
         puts "They play at #{team.stadium}"
