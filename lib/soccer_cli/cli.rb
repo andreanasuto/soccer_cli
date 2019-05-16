@@ -3,7 +3,7 @@ module SoccerCli
 
     def run
       puts "Welcome to Serie A CLI"
-      SoccerCli::Team.make_teams
+      SoccerCli:: Team.make_teams
       display
     end
 
@@ -39,7 +39,7 @@ module SoccerCli
       if input.to_i > 0 && input.to_i <= SoccerCli::Team.all.size
         team = SoccerCli::Team.find_by_ranking(input.to_i)
         unless team.mkt_value
-          team.add_attributes_to_team(input.to_i)
+          team.add_attributes_to_team
         end
         puts "Here some details:"
         puts "#{team.name} has #{team.points} points"

@@ -38,11 +38,10 @@ module SoccerCli
       SoccerCli::Team.new_from_collection(teams)
     end
 
-    def add_attributes_to_team(input)
+    def add_attributes_to_team
       base = "https://www.transfermarkt.us"
-      team = SoccerCli::Team.find_by_ranking(input.to_i)
-      attributes = Scraper.scraper_team_profile(base + team.url)
-      team.add_attributes(attributes)
+      attributes = Scraper.scraper_team_profile(base + self.url)
+      self.add_attributes(attributes)
     end
 
   end
