@@ -3,7 +3,7 @@ module SoccerCli
 
     def run
       puts "Welcome to Serie A CLI"
-      Team.make_teams
+      SoccerCli::Team.make_teams
       display
     end
 
@@ -27,7 +27,7 @@ module SoccerCli
 
     def print_teams
       i = 0
-      Team.all.each { |team|
+      SoccerCli::Team.all.each { |team|
         i += 1
         puts "#{i}. #{team.name}"
       }
@@ -36,8 +36,8 @@ module SoccerCli
 
     def select_team
       input = gets.strip.downcase
-      if input.to_i > 0 && input.to_i <= Team.all.size
-        team = Team.find_by_ranking(input.to_i)
+      if input.to_i > 0 && input.to_i <= SoccerCli::Team.all.size
+        team = SoccerCli::Team.find_by_ranking(input.to_i)
         unless team.mkt_value
           team.add_attributes_to_team(input.to_i)
         end
